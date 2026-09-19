@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MASMOTRET - Official Photography Portfolio & Booking</title>
+  <style>
+    /* Reset & Style Utama */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0D0D0D;
+      color: #E5E7EB;
+      line-height: 1.6;
+      padding-bottom: 120px;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0D0D0D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #F37021;
+      border-radius: 4px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header / Navigasi Atas */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(13, 13, 13, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #262626;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+    }
+    .brand-orange {
+      color: #F37021;
+    }
+    .logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+    nav {
+      display: flex;
+      gap: 24px;
+    }
+    nav a {
+      font-size: 14px;
+      font-weight: 600;
+      color: #D1D5DB;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #F37021;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      border-bottom: 1px solid #262626;
+      background: radial-gradient(circle at top, rgba(243, 112, 33, 0.1) 0%, rgba(13, 13, 13, 0) 70%);
+    }
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 900;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .hero p {
+      font-size: 16px;
+      color: #9CA3AF;
+      max-width: 650px;
+      margin: 0 auto 30px;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background-color: #F37021;
+      color: #FFFFFF;
+    }
+    .btn-primary:hover {
+      background-color: #D95D12;
+    }
+    .btn-outline {
+      border: 1px solid #262626;
+      color: #D1D5DB;
+    }
+    .btn-outline:hover {
+      border-color: #F37021;
+      color: #FFFFFF;
+    }
+
+    /* Section Title */
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .section-title h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .section-title p {
+      font-size: 14px;
+      color: #9CA3AF;
+      margin-top: 6px;
+    }
+    .title-line {
+      width: 50px;
+      height: 3px;
+      background-color: #F37021;
+      margin: 10px auto 0;
+    }
+
+    /* Layanan Section */
+    .layanan-section {
+      padding: 60px 0;
+      border-bottom: 1px solid #262626;
+    }
+    .layanan-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .layanan-card {
+      background-color: #161616;
+      border: 1px solid #262626;
+      padding: 20px 10px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 700;
+      color: #FFFFFF;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .layanan-card:hover {
+      border-color: #F37021;
+      background-color: #222222;
+    }
+    /* Event di posisi tengah bawah */
+    .card-event {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: 50%;
+    }
+
+    /* Galeri Section */
+    .galeri-section {
+      padding: 60px 0;
+      border-bottom: 1px solid #262626;
+      text-align: center;
+    }
+
+    /* Daftar Harga Section */
+    .harga-section {
+      padding: 60px 0;
+      border-bottom: 1px solid #262626;
+    }
+    .category-group {
+      margin-bottom: 50px;
+      scroll-margin-top: 90px;
+    }
+    .category-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #F37021;
+      text-transform: uppercase;
+      border-left: 4px solid #F37021;
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .package-card {
+      background-color: #161616;
+      border: 1px solid #262626;
+      border-radius: 14px;
+      padding: 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .package-card:hover {
+      border-color: #F37021;
+    }
+    .package-card.selected {
+      border-color: #F37021;
+      background-color: rgba(243, 112, 33, 0.08);
+      box-shadow: 0 0 15px rgba(243, 112, 33, 0.2);
+    }
+    .package-card.selected::after {
+      content: "✓ TERPILIH";
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: #F37021;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .package-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+    .package-price {
+      font-size: 22px;
+      font-weight: 900;
+      color: #F37021;
+      margin-bottom: 16px;
+    }
+    .package-list {
+      list-style: none;
+      font-size: 13px;
+      color: #D1D5DB;
+    }
+    .package-list li {
+      margin-bottom: 8px;
+    }
+    .category-note {
+      font-size: 12px;
+      color: #9CA3AF;
+      font-style: italic;
+      margin-top: 10px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #000000;
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid #262626;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+      font-size: 14px;
+      color: #9CA3AF;
+    }
+    .footer-links a span {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    /* Floating Booking Bar */
+    .floating-bar {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      left: 20px;
+      max-width: 420px;
+      margin: 0 auto;
+      background-color: #161616;
+      border: 2px solid #F37021;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      z-index: 1000;
+      display: none;
+    }
+    @media (min-width: 640px) {
+      .floating-bar {
+        left: auto;
+      }
+    }
+    .bar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .bar-label {
+      font-size: 11px;
+      color: #9CA3AF;
+    }
+    .bar-val-name {
+      font-size: 14px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+    .bar-val-price {
+      font-size: 18px;
+      font-weight: 900;
+      color: #F37021;
+      text-align: right;
+    }
+    .bar-disclaimer {
+      font-size: 10px;
+      color: #9CA3AF;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      background: #0D0D0D;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #262626;
+    }
+    .btn-wa {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background-color: #25D366;
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 14px;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+    .btn-wa:hover {
+      background-color: #1EBE57;
+    }
+
+    @media (max-width: 600px) {
+      nav { display: none; }
+      .hero h1 { font-size: 26px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .card-event { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="brand-logo">
+        <img src="logo.png" alt="MASMOTRET Logo" class="logo-img">
+        <span>MAS<span class="brand-orange">MOTRET</span></span>
+      </a>
+      <nav>
+        <a href="#layanan">Layanan</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#harga">Daftar Harga</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <h1>Abadikan Momen Berharga Bersama <span class="brand-orange">MASMOTRET</span></h1>
+      <p>Layanan dokumentasi fotografi profesional untuk Wedding, Engagement, Akad, Wisuda, Aqiqah, Khitanan, dan Event.</p>
+      <div class="btn-group">
+        <a href="#harga" class="btn btn-primary">Lihat Paket Harga</a>
+        <a href="https://web.facebook.com/mansyurin.new/photos_by" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Lihat Galeri Foto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAYANAN SECTION -->
+  <section id="layanan" class="layanan-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Layanan Kami</h2>
+        <div class="title-line"></div>
+      </div>
+      <div class="layanan-grid">
+        <div class="layanan-card" onclick="scrollToCategory('pkg-wedding')">Wedding</div>
+        <div class="layanan-card" onclick="scrollToCategory('pkg-engagement')">Engagement</div>
+        <div class="layanan-card" onclick="scrollToCategory('pkg-akad')">Akad</div>
+        <div class="layanan-card" onclick="scrollToCategory('pkg-wisuda')">Wisuda</div>
+        <div class="layanan-card" onclick="scrollToCategory('pkg-aqiqah')">Aqiqah</div>
+        <div class="layanan-card" onclick="scrollToCategory('pkg-khitanan')">Khitanan</div>
+        <div class="layanan-card card-event" onclick="scrollToCategory('pkg-event')">Event</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERI SECTION -->
+  <section id="galeri" class="galeri-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Galeri Portofolio</h2>
+        <p>Lihat koleksi hasil karya foto terbaik kami di Facebook</p>
+        <div class="title-line"></div>
+      </div>
+      <a href="https://web.facebook.com/mansyurin.new/photos_by" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Buka Galeri Foto Facebook
+      </a>
+    </div>
+  </section>
+
+  <!-- DAFTAR HARGA SECTION -->
+  <section id="harga" class="harga-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Daftar Harga & Paket</h2>
+        <p>Klik/pilih 1 paket di bawah ini untuk melihat estimasi dan melakukan booking</p>
+        <div class="title-line"></div>
+      </div>
+
+      <!-- WEDDING -->
+      <div id="pkg-wedding" class="category-group">
+        <div class="category-title">Wedding Photography</div>
+        <div class="cards-grid">
+          <div class="package-card" onclick="selectPkg('Wedding - Standard', 800000, this)">
+            <div class="package-name">STANDARD</div>
+            <div class="package-price">Rp 800.000</div>
+            <ul class="package-list">
+              <li>• 5 Jam</li>
+              <li>• Free Editing</li>
+              <li>• 40 Foto + Album Magnetik</li>
+              <li>• Bingkai 10R</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+          <div class="package-card" onclick="selectPkg('Wedding - Premium', 1800000, this)">
+            <div class="package-name">PREMIUM</div>
+            <div class="package-price">Rp 1.800.000</div>
+            <ul class="package-list">
+              <li>• 10 Jam</li>
+              <li>• Free Editing</li>
+              <li>• 80 Foto + Album Magnetik</li>
+              <li>• Bingkai 12R</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+          <div class="package-card" onclick="selectPkg('Wedding - Gold', 2500000, this)">
+            <div class="package-name">GOLD</div>
+            <div class="package-price">Rp 2.500.000</div>
+            <ul class="package-list">
+              <li>• Full Day</li>
+              <li>• Free Editing</li>
+              <li>• 120 Foto + Album Magnetik</li>
+              <li>• Bingkai 18R</li>
+              <li>• Video Reels min 30 detik</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENGAGEMENT -->
+      <div id="pkg-engagement" class="category-group">
+        <div class="category-title">Engagement Photography</div>
+        <div class="cards-grid">
+          <div class="package-card" onclick="selectPkg('Engagement - Premium', 500000, this)">
+            <div class="package-name">PREMIUM</div>
+            <div class="package-price">Rp 500.000</div>
+            <ul class="package-list">
+              <li>• Full Day</li>
+              <li>• Free Editing</li>
+              <li>• 40 Foto + Album</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+          <div class="package-card" onclick="selectPkg('Engagement - Gold', 900000, this)">
+            <div class="package-name">GOLD</div>
+            <div class="package-price">Rp 900.000</div>
+            <ul class="package-list">
+              <li>• Full Day</li>
+              <li>• Free Editing</li>
+              <li>• 80 Foto + Album</li>
+              <li>• Cetak Foto + Frame 12R</li>
+              <li>• Video Reels min 30 detik</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- AKAD -->
+      <div id="pkg-akad" class="category-group">
+        <div class="category-title">Akad Photography</div>
+        <div class="cards-grid">
+          <div class="package-card" onclick="selectPkg('Akad - Premium', 600000, this)">
+            <div class="package-name">PREMIUM</div>
+            <div class="package-price">Rp 600.000</div>
+            <ul class="package-list">
+              <li>• Full Day</li>
+              <li>• Free Editing</li>
+              <li>• 40 Foto + Album</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+          <div class="package-card" onclick="selectPkg('Akad - Gold', 1000000, this)">
+            <div class="package-name">GOLD</div>
+            <div class="package-price">Rp 1.000.000</div>
+            <ul class="package-list">
+              <li>• Full Day</li>
+              <li>• Free Editing</li>
+              <li>• 80 Foto + Album</li>
+              <li>• Cetak Foto + Frame 12R</li>
+              <li>• Video Reels min 30 detik</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- WISUDA -->
+      <div id="pkg-wisuda" class="category-group">
+        <div class="category-title">Wisuda Photography</div>
+        <div class="cards-grid">
+          <div class="package-card" onclick="selectPkg('Wisuda - Standard', 200000, this)">
+            <div class="package-name">STANDARD</div>
+            <div class="package-price">Rp 200.000</div>
+            <ul class="package-list">
+              <li>• 40 Menit</li>
+              <li>• Unlimited Foto</li>
+              <li>• 1 Wisudawan (Max 6 Anggota Keluarga)</li>
+              <li>• Free Editing</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+          <div class="package-card" onclick="selectPkg('Wisuda - Premium', 350000, this)">
+            <div class="package-name">PREMIUM</div>
+            <div class="package-price">Rp 350.000</div>
+            <ul class="package-list">
+              <li>• 60 Menit</li>
+              <li>• Unlimited Foto</li>
+              <li>• 1 Wisudawan (Max 8 Anggota Keluarga)</li>
+              <li>• Free Editing</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+          <div class="package-card" onclick="selectPkg('Wisuda - Gold', 500000, this)">
+            <div class="package-name">GOLD</div>
+            <div class="package-price">Rp 500.000</div>
+            <ul class="package-list">
+              <li>• 90 Menit</li>
+              <li>• Unlimited Foto</li>
+              <li>• 1 Wisudawan (Max 10 Anggota Keluarga)</li>
+              <li>• Free Editing</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+        </div>
+        <p class="category-note">* Add wisudawan & anggota keluarga dapat menghubungi kami.</p>
+      </div>
+
+      <!-- AQIQAH -->
+      <div id="pkg-aqiqah" class="category-group">
+        <div class="category-title">Aqiqah Photography</div>
+        <div class="cards-grid">
+          <div class="package-card" onclick="selectPkg('Aqiqah - Standard', 500000, this)">
+            <div class="package-name">STANDARD</div>
+            <div class="package-price">Rp 500.000</div>
+            <ul class="package-list">
+              <li>• 2 Jam</li>
+              <li>• Free Editing</li>
+              <li>• 40 Foto + Album Biasa</li>
+              <li>• Bingkai 10R</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+          <div class="package-card" onclick="selectPkg('Aqiqah - Premium', 800000, this)">
+            <div class="package-name">PREMIUM</div>
+            <div class="package-price">Rp 800.000</div>
+            <ul class="package-list">
+              <li>• 4 Jam</li>
+              <li>• Free Editing</li>
+              <li>• 40 Foto + Album Magnetik</li>
+              <li>• Bingkai 12R</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+          <div class="package-card" onclick="selectPkg('Aqiqah - Gold', 1300000, this)">
+            <div class="package-name">GOLD</div>
+            <div class="package-price">Rp 1.300.000</div>
+            <ul class="package-list">
+              <li>• Full Day</li>
+              <li>• Free Editing</li>
+              <li>• 80 Foto + Album Magnetik</li>
+              <li>• Bingkai 16R</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- KHITANAN -->
+      <div id="pkg-khitanan" class="category-group">
+        <div class="category-title">Khitanan Photography</div>
+        <div class="cards-grid">
+          <div class="package-card" onclick="selectPkg('Khitanan - Standard', 500000, this)">
+            <div class="package-name">STANDARD</div>
+            <div class="package-price">Rp 500.000</div>
+            <ul class="package-list">
+              <li>• 2 Jam</li>
+              <li>• Free Editing</li>
+              <li>• 40 Foto + Album Magnetik</li>
+              <li>• Bingkai 10R</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+          <div class="package-card" onclick="selectPkg('Khitanan - Premium', 1000000, this)">
+            <div class="package-name">PREMIUM</div>
+            <div class="package-price">Rp 1.000.000</div>
+            <ul class="package-list">
+              <li>• 4 Jam</li>
+              <li>• Free Editing</li>
+              <li>• 80 Foto + Album Magnetik</li>
+              <li>• Bingkai 12R</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+          <div class="package-card" onclick="selectPkg('Khitanan - Gold', 1500000, this)">
+            <div class="package-name">GOLD</div>
+            <div class="package-price">Rp 1.500.000</div>
+            <ul class="package-list">
+              <li>• Full Day</li>
+              <li>• Free Editing</li>
+              <li>• 120 Foto + Album Magnetik</li>
+              <li>• Bingkai 16R</li>
+              <li>• File via Google Drive</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENT -->
+      <div id="pkg-event" class="category-group">
+        <div class="category-title">Event Photography</div>
+        <div class="cards-grid">
+          <div class="package-card" onclick="selectPkg('Event (Custom)', 350000, this)">
+            <div class="package-name">EVENT PACKAGES</div>
+            <div class="package-price">Start from Rp 350.000</div>
+            <p style="font-size: 13px; color: #9CA3AF;">Untuk mengetahui harga final dan penawaran khusus, silakan klik untuk konsultasi via WA.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="kontak">
+    <div class="container">
+      <div class="brand-logo" style="justify-content: center; margin-bottom: 15px;">
+        <img src="logo.png" alt="MASMOTRET Logo" class="logo-img">
+        <span>MAS<span class="brand-orange">MOTRET</span></span>
+      </div>
+      <div class="footer-links">
+        <a href="https://instagram.com/masmotret__" target="_blank">Instagram: <span>@masmotret__</span></a>
+        <a href="https://facebook.com/mansyurin new" target="_blank">Facebook: <span>mansyurin new</span></a>
+        <a href="https://wa.me/6285724129496" target="_blank">WhatsApp: <span>085724129496</span></a>
+      </div>
+      <p style="font-size: 12px; color: #6B7280;">&copy; 2026 MASMOTRET. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- FLOATING BOOKING BAR (POJOK KANAN BAWAH) -->
+  <div id="floatingBar" class="floating-bar">
+    <div class="bar-header">
+      <div>
+        <div class="bar-label">Paket Dipilih:</div>
+        <div id="pkgName" class="bar-val-name">-</div>
+      </div>
+      <div>
+        <div class="bar-label" style="text-align: right;">Estimasi Harga:</div>
+        <div id="pkgPrice" class="bar-val-price">Rp 0</div>
+      </div>
+    </div>
+    <div class="bar-disclaimer">
+      *Harga di atas merupakan estimasi awal dan belum termasuk biaya operasional (seperti transportasi). Biaya dapat bertambah atau berkurang sesuai penyesuaian kebutuhan acara Anda.
+    </div>
+    <a id="waBtn" href="#" target="_blank" class="btn-wa">Booking via WhatsApp</a>
+  </div>
+
+  <script>
+    // Fungsi Navigasi dari Layanan ke Pricelist Terkait
+    function scrollToCategory(id) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Fungsi Pilih Paket & Floating Bar
+    function selectPkg(name, price, element) {
+      // Unselect semua paket lain
+      const cards = document.querySelectorAll('.package-card');
+      cards.forEach(c => c.classList.remove('selected'));
+
+      // Select paket yang diklik
+      element.classList.add('selected');
+
+      // Update Tampilan Floating Bar
+      document.getElementById('pkgName').innerText = name;
+      document.getElementById('pkgPrice').innerText = 'Rp ' + price.toLocaleString('id-ID');
+
+      // Pesan WhatsApp Otomatis
+      const text = `Halo Masmotret, saya tertarik booking paket *${name}* dengan estimasi harga Rp ${price.toLocaleString('id-ID')}. Apakah tanggal acara saya masih tersedia?`;
+      document.getElementById('waBtn').href = `https://wa.me/6285724129496?text=${encodeURIComponent(text)}`;
+
+      // Tampilkan Floating Bar di pojok bawah
+      document.getElementById('floatingBar').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
